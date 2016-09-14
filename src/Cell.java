@@ -25,9 +25,9 @@ public class Cell {
 	public String draw(){
 		if(this.s == null){
 			if(this.hit){
-				return "X";
+				return "|X|";
 			}else{
-				return " ";
+				return "|_|";
 			}
 		}else{
 			return this.s.draw();

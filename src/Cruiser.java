@@ -1,15 +1,22 @@
 
 public class Cruiser extends Ship {
 
-	public Cruiser(String name) {
-		super(name);
-		// TODO Auto-generated constructor stub
+	int size = 3;
+	
+	
+	public Cruiser(String name, Position p, HEADING h) {
+		super(name, p, h);
 	}
 
 	@Override
 	public String draw() {
 		// TODO Auto-generated method stub
-		return null;
+		return "|C|";
+	}
+
+	@Override
+	public int getSize() {
+		return this.size;
 	}
 	
 }

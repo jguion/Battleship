@@ -1,15 +1,20 @@
 
 public class Destroyer extends Ship {
+	
+	int size = 4;
 
-	public Destroyer(String name) {
-		super(name);
-		// TODO Auto-generated constructor stub
+	public Destroyer(String name, Position p, HEADING h) {
+		super(name, p, h);
 	}
 
 	@Override
 	public String draw() {
-		// TODO Auto-generated method stub
-		return null;
+		return "|D|";
+	}
+
+	@Override
+	public int getSize() {
+		return this.size;
 	}
 
 }
