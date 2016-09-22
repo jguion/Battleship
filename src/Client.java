@@ -22,6 +22,13 @@ public class Client {
 		this.ships = new ArrayList<Ship>();
 	}
 	
+	public Client(String name, BufferedReader in, PrintStream out){//,GameManager gm){
+		this.name=name;
+		this.out = out;
+		this.in = in;
+		this.ships = new ArrayList<Ship>();
+	}
+	
 	//
 	public void initPlayer() throws IOException{
 		out.println("Enter Player name");
