@@ -17,4 +17,13 @@ public class Destroyer extends Ship {
 		return this.size;
 	}
 
+	@Override
+	public char drawShipStatusAtCell(boolean isDamaged) {
+		if(isDamaged){
+			return 'd';
+		}else{
+			return 'D';
+		}
+	}
+
 }

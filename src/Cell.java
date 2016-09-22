@@ -4,6 +4,7 @@ public class Cell {
 	int y;
 	Ship s = null;
 	boolean hit = false;
+	protected boolean struckByMissle = false;
 	
 	Cell(int x, int y){
 		this.x = x;
@@ -22,16 +23,24 @@ public class Cell {
 		return this.s;
 	}
 	
-	public String draw(){
+	public char draw(){
 		if(this.s == null){
 			if(this.hit){
-				return "|X|";
+				return 'X';
 			}else{
-				return "|_|";
+				return '_';
 			}
 		}else{
-			return this.s.draw();
+			return this.s.drawShipStatusAtCell(this.hasBeenStruckByMissile());
 		}
+	}
+	
+	public boolean hasBeenStruckByMissile(){
+		return struckByMissle;
+	}
+	
+	public void hasBeenStruckByMissile( boolean wasStruck ){
+		this.struckByMissle = wasStruck;
 	}
 	
 }

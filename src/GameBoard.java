@@ -32,6 +32,10 @@ public class GameBoard {
 		return board;
 	}
 	
+	public Cell getCell(Position p){
+		return this.cells.get(p.getX()).get(p.getY());
+	}
+	
 	public boolean addShip(Ship s){
 		if(safetyCheck(s)){
 			Position p = s.getPosition();
@@ -61,5 +65,12 @@ public class GameBoard {
 	
 	private boolean safetyCheck(Ship s){
 		return true;
+	}
+	
+	public Ship fireMissile( Position coordinate ){
+		Cell c = this.cells.get(coordinate.getX()).get(coordinate.getY());
+		c.hasBeenStruckByMissile(true);
+		
+		return c.s;
 	}
 }

@@ -13,6 +13,7 @@ public class Client {
 	BufferedReader in = null;
 	PrintStream out; 
 	GameBoard board = new GameBoard(10, 10);
+	GameBoard targets = new GameBoard(10,10);
 	ArrayList<Ship> ships;
 	
 	public Client(String name){
@@ -73,6 +74,57 @@ public class Client {
 			
 		}
 		
+	}
+	
+	public void playGame() throws IOException{
+		this.out.println( "   Missiles Away! Game has begun" );
+		this.out.println( "   To Launch a missle at your enemy:" );
+		this.out.println( "F 2 4" );
+		this.out.println( "Fires a missile at coordinate x=2, y=4." );
+		
+		// put Code Here to process in game commands, after each command, print the target board and game board w/ updated state
+		while(!allMyShipsAreDestroyed() || allEnemyShipsAreDestroyed())
+		{
+			out.println( "------------------------" );
+			out.println( "Target Board:" + this.targets.draw() );
+			out.println( "Your Ships: " + this.board.draw() );
+			out.println( "   Waiting for Next Command...\n\n" );
+			out.flush();
+			
+			//Perform test here to see if we have run or lost
+		}
+	}
+	
+	//Returns a bool, true iff all of this client's ships are destroyed
+	boolean allMyShipsAreDestroyed(){
+		return false;
+	}
+
+	//Returns a bool, true iff all of the opponent's ships are destroyed
+	boolean allEnemyShipsAreDestroyed(){
+		return false;
+	}
+
+	//"F 2 4" = Fire command
+	//"C Hello world, i am a chat message"
+	//"D" - Redraw the latest game and target boards
+	boolean processCommand() throws IOException{
+		String cmdText = in.readLine();
+		String[] cmdArray = cmdText.split(" ");
+		String cmd = cmdArray[0];
+		if(cmd.equalsIgnoreCase("f")){
+			return processFireCmd(cmdArray);
+		}
+		
+		return true;
+	}
+	
+	//When a fire command is typed, this method parses the coordinates and launches a missile at the enemy
+	boolean processFireCmd( String [] s ){
+		Position p = new Position(s[1],s[2]);
+		Cell c = this.targets.getCell(p);
+		c.hasBeenStruckByMissile(true);
+		return true;
 	}
 	
 

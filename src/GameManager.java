@@ -41,5 +41,16 @@ public class GameManager {
 	
 	public void initPlayers(){
 		//assync by arraylist.getparallelstream
+		this.clients.parallelStream().forEach(client -> {
+			try {
+				client.initPlayer();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+	}
+	
+	public void playGame() throws IOException{
 	}
 }

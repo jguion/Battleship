@@ -18,5 +18,15 @@ public class Cruiser extends Ship {
 	public int getSize() {
 		return this.size;
 	}
+
+	@Override
+	public char drawShipStatusAtCell(boolean isDamaged) {
+		// TODO Auto-generated method stub
+		if(isDamaged){
+			return 'c';
+		}else{
+			return 'C';
+		}
+	}
 	
 }

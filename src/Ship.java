@@ -1,8 +1,10 @@
+import java.util.ArrayList;
 
 public abstract class Ship {
 	Position p;
 	HEADING direction;
 	String name;
+	protected ArrayList< Cell > position = null;
 	
 	public Ship(String name, Position p, HEADING h){
 		this.name = name;
@@ -11,6 +13,8 @@ public abstract class Ship {
 	}
 	
 	abstract public String draw();
+	
+	public abstract char drawShipStatusAtCell( boolean isDamaged );
 
 	public Position getPosition() {
 		return p;
@@ -37,4 +41,11 @@ public abstract class Ship {
 	}
 	
 	abstract public int getSize();
+	
+	public boolean isAlive(){
+		for( Cell c : this.position )
+			if( ! c.hasBeenStruckByMissile() )
+				return true;
+		return false;
+	}
 }
